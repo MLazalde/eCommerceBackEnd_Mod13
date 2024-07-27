@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 });
 
 // get one product
-//http://localhost:3001/api/products
+//http://localhost:3001/api/products/:id
 router.get("/:id", async (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
@@ -32,6 +32,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // create new product
+//http://localhost:3001/api/products/
 router.post("/", (req, res) => {
   /* req.body should look like this...
     {
