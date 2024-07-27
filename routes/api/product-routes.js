@@ -22,8 +22,8 @@ router.get("/:id", async (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
   try {
-    const productData = await Product.findByPK(req.params.id, {
-      include: [{ model: Catagory }, { model: Tag }],
+    const productData = await Product.findByPk(req.params.id, {
+      include: [ Category, Tag ],
     });
     res.status(200).json(productData);
   } catch (err) {
@@ -110,17 +110,17 @@ router.put("/:id", (req, res) => {
 });
 
 //http://localhost:3001/api/products/:id
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   // delete one product by its `id` value
   try {
     const deleteProduct = await Product.destroy({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     });
 
     if (!deleteProduct) {
-      res.status(404).json({ message: 'No location found with this id!' });
+      res.status(404).json({ message: "No location found with this id!" });
       return;
     }
 
